@@ -40,7 +40,7 @@ function make_torrent($file_full, $file) {
 	$info = pathinfo($file);
 	$output = TORRENT_DIR.'/'.$info['basename'].'.torrent';
 	if (file_exists($output)) unlink($output);
-	$cmd = "mktorrent '$move_file' -o '$output'".PIECE_SIZE." -a ".ANNOUNCE_URL;
+	$cmd = "mktorrent '$move_file' -o '$output' -l".PIECE_SIZE." -a ".ANNOUNCE_URL;
 	echo $cmd."\n";
 	exec($cmd);
 	
