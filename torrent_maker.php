@@ -7,13 +7,6 @@ define('JOB_DIR', ROOT_DIR.'/');
 define('ANNOUNCE_URL', 'YOUR-TRACKER-ANNOUNCE-AND-PASSKEY-HERE');
 define('PIECE_SIZE', '21');
 
-function move($source, $dest) {
-	$cmd = 'mv "'.$source.'" "'.$dest.'"'; 
-	exec($cmd, $output, $return_val); 
-	if ($return_val == 0) return 1;
-	return 0;
-}
-
 function exist_check($file_full, $file) {
 	$file = pathinfo($file_full, PATHINFO_BASENAME);
 	$found = false;
