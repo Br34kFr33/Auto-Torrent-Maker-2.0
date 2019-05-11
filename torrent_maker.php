@@ -36,8 +36,11 @@ function exist_check($file_full, $file) {
 function make_torrent($file_full, $file) {
 	$file = pathinfo($file_full, PATHINFO_BASENAME);
 	$move_file = SCAN_DIR.'/'.$file;
-
 	$info = pathinfo($file);
+	
+	$watch = array("(", ")","{", "}", "'", ";", "?", "<", ">", ":");
+	$info['basename'] = str_replace($watch, '.', $info['basename']);	
+	
 	$output = TORRENT_DIR.'/'.$info['basename'].'.torrent';
 	if (file_exists($output)) unlink($output);
 	$cmd = "mktorrent '$move_file' -o '$output' -l".PIECE_SIZE." -a ".ANNOUNCE_URL;
