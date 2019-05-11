@@ -31,8 +31,9 @@ function make_torrent($file_full, $file) {
 	$move_file = SCAN_DIR.'/'.$file;
 	$info = pathinfo($file);
 	
-	$watch = array("(", ")","{", "}", "'", ";", "?", "<", ">", ":");
-	$info['basename'] = str_replace($watch, '.', $info['basename']);	
+	$watch = array("(", ")", "{", "}", "'", "\"", ";", "?", "<", ">", ":");
+	$info['basename'] = str_replace($watch, '.', $info['basename']);
+	$info['basename'] = str_replace('..', '.', $info['basename']);
 	
 	$output = TORRENT_DIR.'/'.$info['basename'].'.torrent';
 	if (file_exists($output)) unlink($output);
